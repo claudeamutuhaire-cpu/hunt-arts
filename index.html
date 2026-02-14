@@ -5,272 +5,249 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HUNT ARTS • Claude Hunt Corner</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <!-- GLightbox CDN for lightbox popups -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <style>
     :root {
       --gold: #FFD700;
+      --dark: #0a0a0a;
+      --dark2: #111;
       --accent: #c9a96e;
-      --bg: #0a0a0a;
-      --text: #eee;
-      --card: #111;
-      --border: #333;
-    }
-    body.light-mode {
-      --bg: #f8f8f8;
-      --text: #222;
-      --card: #fff;
-      --border: #ddd;
-      --gold: #d4a017; /* slightly muted gold for light */
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      background: var(--bg);
-      color: var(--text);
+      background: var(--dark);
+      color: #eee;
       font-family: 'Segoe UI', Arial, sans-serif;
-      overflow-x: hidden;
       min-height: 100vh;
-      transition: background 0.4s, color 0.4s;
+      position: relative;
     }
-    /* Falling leaves - toned down in light mode */
     .leaves { position: fixed; inset: 0; pointer-events: none; z-index: -1; }
     .leaf {
       position: absolute;
       width: 20px; height: 10px;
       background: radial-gradient(circle, var(--gold), #b8860b);
       border-radius: 50% 0;
-      opacity: 0.6;
+      opacity: 0.7;
       box-shadow: 0 0 8px var(--gold);
       animation: fall linear infinite;
-      transform-origin: center;
     }
     @keyframes fall { 0% { transform: translateY(-100vh) rotate(0deg) translateX(0); } 100% { transform: translateY(110vh) rotate(720deg) translateX(80vw); } }
     header {
-      height: 70vh; min-height: 450px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--bg)),
+      height: 70vh;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--dark)),
                   url('https://images.unsplash.com/photo-1516321310761-9b102f8d6d5e?auto=format&fit=crop&q=80') center/cover;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; position: relative;
     }
-    .banner-text { font-size: 4rem; font-weight: bold; color: var(--gold); text-shadow: 0 0 25px rgba(255,215,0,0.9), 5px 5px 0 #000; animation: glow 4s ease-in-out infinite alternate; }
-    @keyframes glow { from { text-shadow: 0 0 15px gold; } to { text-shadow: 0 0 50px gold, 0 0 80px orange; } }
-    .banner-sub { font-size: 1.8rem; color: #ddd; margin: 1rem 0; }
-    .toggle-btn {
-      position: absolute; top: 1.5rem; right: 1.5rem;
-      background: rgba(0,0,0,0.5); color: var(--gold); border: 2px solid var(--gold);
-      padding: 0.8rem; border-radius: 50%; cursor: pointer; font-size: 1.4rem;
-      transition: all 0.3s;
+    .banner-text { font-size: 4.5rem; font-weight: bold; color: var(--gold); text-shadow: 0 0 30px gold, 0 0 60px orange; animation: glow 3s infinite alternate; }
+    @keyframes glow { from { text-shadow: 0 0 20px gold; } to { text-shadow: 0 0 60px gold, 0 0 100px orange; } }
+    .profile {
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      border: 6px solid var(--gold);
+      box-shadow: 0 0 40px rgba(255,215,0,0.6);
+      object-fit: cover;
+      margin: -110px auto 2rem;
+      display: block;
+      background: #000;
     }
-    .toggle-btn:hover { background: var(--gold); color: #000; transform: scale(1.1); }
-    .partners { background: var(--card); padding: 1rem 0; overflow: hidden; border-top/bottom: 1px solid var(--gold); }
-    .marquee { display: inline-block; animation: scroll-left 30s linear infinite; font-size: 1.5rem; color: var(--gold); font-weight: bold; }
-    @keyframes scroll-left { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-    .flag { font-size: 6rem; font-weight: 900; color: var(--gold); text-align: center; margin: 4rem 0 1rem; animation: wave 5s ease-in-out infinite; text-shadow: 0 0 20px rgba(255,215,0,0.7); }
-    @keyframes wave { 0%,100% { transform: skewX(0deg); } 25% { transform: skewX(12deg); } 75% { transform: skewX(-12deg); } }
-    main { max-width: 1100px; margin: 0 auto; padding: 2rem; line-height: 1.8; }
-    h2 { color: var(--gold); margin: 3rem 0 1.5rem; font-size: 3rem; text-align: center; }
-    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0; }
+    .marquee {
+      background: #1a1a1a;
+      padding: 1.2rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+    }
+    .marquee-content {
+      display: inline-block;
+      animation: scroll-right-to-left 30s linear infinite;
+      font-size: 1.6rem;
+      color: var(--gold);
+      font-weight: bold;
+      padding-right: 100%;
+    }
+    @keyframes scroll-right-to-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+    .urgency {
+      background: rgba(255,215,0,0.15);
+      color: var(--gold);
+      text-align: center;
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1.3rem;
+      border-bottom: 2px solid var(--gold);
+    }
+    main { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
     .service-card {
-      background: var(--card); padding: 2rem; border-radius: 12px; border: 2px solid var(--border);
-      text-align: center; transition: transform 0.3s, box-shadow 0.3s;
+      background: #111;
+      padding: 2.5rem;
+      border-radius: 16px;
+      border: 2px solid #333;
+      text-align: center;
+      transition: all 0.4s;
+      cursor: pointer;
     }
-    .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(255,215,0,0.2); }
-    .service-card i { font-size: 3rem; color: var(--gold); margin-bottom: 1rem; }
-    .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
-    .value { background: var(--card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--gold); text-align: center; }
-    /* Portfolio */
-    .filters { text-align: center; margin: 2rem 0; }
-    .filter-btn {
-      background: var(--card); color: var(--gold); border: 2px solid var(--gold); padding: 0.8rem 1.5rem;
-      margin: 0.5rem; border-radius: 30px; cursor: pointer; transition: all 0.3s;
+    .service-card:hover {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 25px 50px rgba(255,215,0,0.25);
+      border-color: var(--gold);
     }
-    .filter-btn.active, .filter-btn:hover { background: var(--gold); color: #000; }
-    .portfolio-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
+    .service-card i { font-size: 3.5rem; color: var(--gold); margin-bottom: 1.2rem; }
+    .jealousy {
+      background: linear-gradient(135deg, #111, #1a1a1a);
+      padding: 3rem 2rem;
+      border-radius: 16px;
+      border: 2px dashed var(--gold);
+      margin: 4rem 0;
+      text-align: center;
     }
-    .portfolio-item { position: relative; overflow: hidden; border-radius: 12px; border: 2px solid var(--border); cursor: pointer; }
-    .portfolio-item img { width: 100%; height: auto; display: block; transition: transform 0.4s; }
-    .portfolio-item:hover img { transform: scale(1.08); }
-    .portfolio-item .overlay {
-      position: absolute; inset: 0; background: rgba(0,0,0,0.6); color: white;
-      display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s;
-      font-weight: bold; font-size: 1.3rem;
-    }
-    .portfolio-item:hover .overlay { opacity: 1; }
-    /* Contact Form */
-    form { max-width: 700px; margin: 0 auto; background: var(--card); padding: 2.5rem; border-radius: 12px; border: 2px solid var(--border); }
-    input, select, textarea {
-      width: 100%; padding: 1rem; margin: 1rem 0; border-radius: 8px; border: 1px solid var(--border);
-      background: var(--bg); color: var(--text); font-size: 1.1rem;
-    }
-    button[type="submit"] {
-      background: var(--gold); color: #000; padding: 1rem 2rem; border: none; border-radius: 50px;
-      font-size: 1.2rem; font-weight: bold; cursor: pointer; display: block; margin: 1.5rem auto 0;
+    .jealousy h2 { color: var(--gold); font-size: 2.8rem; margin-bottom: 1.5rem; }
+    .jealousy-stat { font-size: 2.2rem; color: var(--gold); margin: 1.5rem 0; }
+    .floating-cta {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--gold);
+      color: #000;
+      padding: 1.2rem 2rem;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 10px 30px rgba(255,215,0,0.5);
+      z-index: 1000;
+      text-decoration: none;
       transition: all 0.3s;
     }
-    button[type="submit"]:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255,215,0,0.4); }
-    /* Newsletter */
-    .newsletter { text-align: center; margin: 4rem 0; padding: 2rem; background: var(--card); border-radius: 12px; border: 2px dashed var(--gold); }
-    .newsletter form { max-width: 500px; margin: 1rem auto; }
-    /* Social & Footer */
-    .social { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin: 4rem 0; }
-    .btn { /* same as before */ background: #222; color: var(--gold); padding: 1.2rem 2rem; border-radius: 50px; text-decoration: none; font-size: 1.2rem; font-weight: bold; border: 2px solid var(--gold); transition: all 0.3s; display: flex; align-items: center; gap: 0.8rem; }
-    .btn:hover { background: var(--gold); color: #000; transform: translateY(-5px); box-shadow: 0 12px 25px rgba(255,215,0,0.3); }
-    footer { text-align: center; padding: 3rem 1rem; color: #777; border-top: 1px solid var(--border); }
+    .floating-cta:hover { transform: scale(1.1); box-shadow: 0 15px 40px rgba(255,215,0,0.7); }
+    form { background: #111; padding: 2.5rem; border-radius: 16px; border: 2px solid #333; max-width: 700px; margin: 0 auto; }
+    input, select, textarea { width: 100%; padding: 1rem; margin: 1rem 0; border-radius: 8px; border: 1px solid #444; background: #0a0a0a; color: #eee; font-size: 1.1rem; }
+    button[type="submit"] { background: var(--gold); color: #000; padding: 1.2rem 3rem; border: none; border-radius: 50px; font-size: 1.3rem; font-weight: bold; cursor: pointer; display: block; margin: 2rem auto 0; transition: all 0.3s; }
+    button[type="submit"]:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(255,215,0,0.5); }
+    footer { text-align: center; padding: 3rem; color: #777; border-top: 1px solid #222; }
   </style>
 </head>
 <body>
 
   <div class="leaves" id="leaves"></div>
 
+  <div class="urgency">Only 3 premium slots left this month – DM before they're gone 🔥</div>
+
   <header>
-    <button class="toggle-btn" id="theme-toggle" title="Toggle Dark/Light Mode"><i class="fas fa-moon"></i></button>
-    <div class="banner-text">Claude Hunt Corner</div>
-    <div class="banner-sub">Raw creative fire. Digital domination. Hunt Arts — we build what others dream.</div>
+    <img src="profile.jpg" alt="Claude Hunt" class="profile">
+    <div class="banner-text">HUNT ARTS</div>
+    <div class="banner-sub">Where your vision becomes untouchable.</div>
   </header>
 
-  <div class="partners">
-    <div class="marquee">
-      RONALD PRODUCTION • TEAM EPHRAIM • AGAPT GRAPHICS • KCP GRAPHICS • UG • RONALD PRODUCTION • TEAM EPHRAIM • AGAPT GRAPHICS • KCP GRAPHICS • UG • 
+  <div class="marquee">
+    <div class="marquee-content">
+      RONALD PRODUCTION • TEAM EPHRAIM • AGAPT GRAPHICS • KCP GRAPHICS • UG • ELITE CLIENTS • VIRAL REELS • 6-FIGURE CONVERSIONS • RONALD PRODUCTION • TEAM EPHRAIM • AGAPT GRAPHICS • KCP GRAPHICS • UG • ELITE CLIENTS • VIRAL REELS • 6-FIGURE CONVERSIONS • 
     </div>
   </div>
 
   <main>
-    <div class="flag">HUNT ARTS</div>
-
-    <!-- Quick Services Flash + CTA -->
-    <section class="services">
-      <div class="service-card"><i class="fas fa-code"></i><h3>Custom Websites & Hosting</h3><p>Fast, sexy, conversion machines.</p></div>
-      <div class="service-card"><i class="fas fa-video"></i><h3>Video Coverage & Editing</h3><p>From raw footage to viral reels.</p></div>
-      <div class="service-card"><i class="fas fa-robot"></i><h3>AI Chatbots That Sell</h3><p>24/7 hustle, no sleep needed.</p></div>
-      <div class="service-card"><i class="fas fa-bullhorn"></i><h3>Ad Creation & Graphics</h3><p>Scroll-stopping visuals that print money.</p></div>
-      <div class="service-card"><i class="fas fa-terminal"></i><h3>Termux Wizardry & Automation</h3><p>Deep mobile hacks, bots, scripts — no limits.</p></div>
-    </section>
-
-    <h2>My Story — Why Hunt Arts</h2>
-    <p>Yo, I'm Claude. Started as a kid messing with edits on cracked phones in Kampala streets, turned that grind into full-blown digital arson. Hunt Arts isn't some corporate bs — it's me + a small crew turning impossible client visions into shit that slaps. We don't do mediocre. We do fire: websites that convert, videos that blow up, bots that close deals while you sleep, ads that make wallets bleed cash. If you're here to play small, bounce. If you're ready to dominate, let's burn it down and build gold.</p>
-
-    <div class="values-grid">
-      <div class="value"><h3>Raw Hustle</h3><p>No excuses, only execution.</p></div>
-      <div class="value"><h3>Zero Compromise</h3><p>Quality or nothing.</p></div>
-      <div class="value"><h3>Client Wins First</h3><p>Your bag grows, ours follows.</p></div>
-      <div class="value"><h3>Future-Proof Magic</h3><p>AI, code, hacks — we stay ahead.</p></div>
+    <div class="jealousy">
+      <h2>Clients Are Eating</h2>
+      <div class="jealousy-stat">+320% ROI on last ad campaign</div>
+      <div class="jealousy-stat">1.2M views in 48 hours (video edit)</div>
+      <div class="jealousy-stat">Chatbot closed $18K in sales while sleeping</div>
+      <div class="jealousy-stat">Site launch → 47 qualified leads day 1</div>
+      <p style="margin-top: 2rem; font-style: italic;">Your turn? Or watch from the sidelines again.</p>
     </div>
 
-    <h2>Showroom — Portfolio</h2>
-    <div class="filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="video">Video</button>
-      <button class="filter-btn" data-filter="ads">Ads</button>
-      <button class="filter-btn" data-filter="bots">Bots</button>
-      <button class="filter-btn" data-filter="web">Web</button>
-      <button class="filter-btn" data-filter="other">Other</button>
-    </div>
-    <div class="portfolio-grid" id="portfolio">
-      <!-- Add class="glightbox" to each img for lightbox + data-gallery="portfolio" -->
-      <a href="photo1.jpg" class="portfolio-item glightbox" data-gallery="portfolio" data-title="Epic Video Edit — Client Reel" data-desc="High-energy montage, color graded fire. Category: video">
-        <img src="photo1.jpg" alt="Video Edit Sample" loading="lazy">
-        <div class="overlay">Video</div>
-      </a>
-      <a href="photo2.jpg" class="portfolio-item glightbox" data-gallery="portfolio" data-title="Ad Banner That Converted 3x" data-desc="Scroll-stopper graphic. Category: ads">
-        <img src="photo2.jpg" alt="Ad Sample" loading="lazy">
-        <div class="overlay">Ads</div>
-      </a>
-      <!-- Add more items, change data-filter class on parent if needed, e.g. class="portfolio-item video" -->
-      <!-- Example: <a href="..." class="portfolio-item glightbox bots" ... > for filtering -->
-    </div>
-
-    <h2>Connect — Let's Build</h2>
-    <form action="https://formspree.io/f/yourformid" method="POST"> <!-- Replace with Formspree or your endpoint -->
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <select name="service" required>
-        <option value="">Service You're After</option>
-        <option value="website">Website / Hosting</option>
-        <option value="video">Video Coverage & Edit</option>
-        <option value="ads">Ad Creation / Graphics</option>
-        <option value="bot">AI Chatbot</option>
-        <option value="termux">Termux / Automation</option>
-        <option value="other">Other Hustle</option>
-      </select>
-      <textarea name="message" rows="6" placeholder="Tell me the vision — be raw." required></textarea>
-      <button type="submit">Send It — Let's Make Gold</button>
-    </form>
-
-    <div class="social">
-      <!-- Same social buttons as before, updated with var(--gold) where needed -->
-      <a href="https://www.tiktok.com/@huntarts" target="_blank" class="btn"><i class="fab fa-tiktok"></i> TikTok @huntarts</a>
-      <!-- ... others ... -->
-    </div>
-
-    <div class="newsletter">
-      <h2>Stay Gold — Get Updates</h2>
-      <p>Exclusive drops, tips, behind-the-scenes heat. No spam, promise.</p>
-      <!-- Replace with your actual Mailchimp embed code -->
-      <div id="mc_embed_signup">
-        <form action="https://yourmailchimp.usX.list-manage.com/subscribe/post?u=YOURU&id=YOURID" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-          <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="your@email.com" required>
-          <button type="submit" name="subscribe" id="mc-embedded-subscribe">Subscribe</button>
-        </form>
+    <h2>Our Services – Pick Your Weapon</h2>
+    <div class="service-grid">
+      <div class="service-card" onclick="window.open('https://wa.me/256752881573?text=Yo%20Claude%2C%20I%20need%20CUSTOM%20WEBSITES%20%26%20HOSTING%20—%20here\'s%20what%20I%20want%3A%20', '_blank')">
+        <i class="fas fa-code"></i>
+        <h3>Custom Websites & Hosting</h3>
+        <p>Fast, sexy sites that print money.</p>
+      </div>
+      <div class="service-card" onclick="window.open('https://wa.me/256752881573?text=Yo%20Claude%2C%20I%20need%20VIDEO%20COVERAGE%20%26%20EDITING%20—%20project%20details%3A%20', '_blank')">
+        <i class="fas fa-video"></i>
+        <h3>Video Coverage & Editing</h3>
+        <p>Raw to viral in days.</p>
+      </div>
+      <div class="service-card" onclick="window.open('https://wa.me/256752881573?text=Yo%20Claude%2C%20build%20me%20an%20AI%20CHATBOT%20THAT%20SELLS%20—%20for%20my%20business%3A%20', '_blank')">
+        <i class="fas fa-robot"></i>
+        <h3>AI Chatbots That Sell</h3>
+        <p>Closes while you sleep.</p>
+      </div>
+      <div class="service-card" onclick="window.open('https://wa.me/256752881573?text=Yo%20Claude%2C%20I%20need%20AD%20CREATION%20%26%20GRAPHICS%20—%20for%20...%20platform%3A%20', '_blank')">
+        <i class="fas fa-bullhorn"></i>
+        <h3>Ad Creation & Graphics</h3>
+        <p>Scroll-stoppers that convert hard.</p>
+      </div>
+      <div class="service-card" onclick="window.open('https://wa.me/256752881573?text=Yo%20Claude%2C%20I%20need%20TERMUX%20WIZARDRY%20%26%20AUTOMATION%20—%20what%20I%20want%3A%20', '_blank')">
+        <i class="fas fa-terminal"></i>
+        <h3>Termux Wizardry & Automation</h3>
+        <p>Deep hacks, bots, scripts – no limits.</p>
       </div>
     </div>
+
+    <h2>Connect — Hit Me</h2>
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <select id="service" required>
+        <option value="">Service You Want</option>
+        <option value="website">Custom Website & Hosting</option>
+        <option value="video">Video Coverage & Editing</option>
+        <option value="bot">AI Chatbot That Sells</option>
+        <option value="ads">Ad Creation & Graphics</option>
+        <option value="termux">Termux Wizardry & Automation</option>
+        <option value="other">Other Fire</option>
+      </select>
+      <textarea id="message" rows="6" placeholder="Your vision – be raw, no filter." required></textarea>
+      <button type="submit">Send to WhatsApp 🔥</button>
+    </form>
+
+    <a href="https://wa.me/256752881573?text=Yo%20Claude%2C%20spots%20are%20filling%20fast%20—%20don't%20let%20me%20miss%20out%20on%20Hunt%20Arts" class="floating-cta">DM Before Slots Gone</a>
   </main>
 
   <footer>
-    © 2026 HUNT ARTS • Built raw in the trenches • All rights reserved.
+    © 2026 HUNT ARTS • Built to make others jealous • claudeamutuhaire@gmail.com
   </footer>
 
   <script>
-    // Falling leaves (same as before)
+    // Leaves animation (same as before)
     const leavesContainer = document.getElementById('leaves');
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 60; i++) {
       const leaf = document.createElement('div');
       leaf.className = 'leaf';
       leaf.style.left = Math.random() * 100 + 'vw';
-      leaf.style.animationDuration = (Math.random() * 12 + 8) + 's';
-      leaf.style.animationDelay = Math.random() * 6 + 's';
-      leaf.style.opacity = Math.random() * 0.4 + 0.4;
-      leaf.style.width = Math.random() * 25 + 15 + 'px';
-      leaf.style.height = Math.random() * 12 + 6 + 'px';
+      leaf.style.animationDuration = (Math.random() * 10 + 8) + 's';
+      leaf.style.animationDelay = Math.random() * 5 + 's';
       leavesContainer.appendChild(leaf);
     }
 
-    // Dark mode toggle
-    const toggle = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    if (currentTheme === 'light') document.body.classList.add('light-mode');
-    toggle.innerHTML = currentTheme === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    // Form → WhatsApp
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value.trim();
 
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('light-mode');
-      const isLight = document.body.classList.contains('light-mode');
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      toggle.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      if (!name || !email || !service || !message) {
+        alert("Fill everything bro – no half-stepping.");
+        return;
+      }
+
+      const text = `Yo Claude 👑%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AService: \( {encodeURIComponent(service)}%0AMessage:%0A \){encodeURIComponent(message)}%0A%0ALet's build fire.`;
+      const url = `https://wa.me/256752881573?text=${text}`;
+      window.open(url, '_blank');
+      
+      // Optional: clear form
+      this.reset();
     });
-
-    // Portfolio filter
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        portfolioItems.forEach(item => {
-          if (filter === 'all' || item.classList.contains(filter)) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // GLightbox init
-    const lightbox = GLightbox({ selector: '.glightbox' });
   </script>
 </body>
-</html>
-
+      </html>
